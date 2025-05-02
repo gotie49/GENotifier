@@ -2,7 +2,7 @@
   "name": "genotifier",
   "version": "1.0.0",
   "description": "waiting",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "build": "tsc && copyfiles -f src/index.html dist",
     "start": "electron .",
