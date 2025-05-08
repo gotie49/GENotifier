@@ -1,4 +1,4 @@
-import { Config, ExtendedPlayer, LocalPlayerInfo } from '../types';
+import { Config, ExtendedPlayer, LocalPlayerInfo } from '../renderer/lib/types';
 
 async function fetchPlayerData(): Promise<ExtendedPlayer[]> {
     try {
