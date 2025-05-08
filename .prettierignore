@@ -1,0 +1,6 @@
+node_modules
+.next
+renderer/.next
+out
+app
+public

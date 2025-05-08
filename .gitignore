@@ -1,2 +1,18 @@
-/node_modules
-/dist
+# dependencies
+node_modules
+
+# logs
+*.log
+
+# next.js
+.next
+renderer/.next
+next-env.d.ts
+renderer/next-env.d.ts
+
+# build
+/app
+dist
+
+# vscode
+.vscode

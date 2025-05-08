@@ -1,0 +1,32 @@
+{
+    "players": [
+        {
+            "name": "Gotie",
+            "skin": "greyfox",
+            "color": "11075328",
+            "foot_color": "11075328",
+            "status": "offline"
+        },
+        {
+            "name": "KOF",
+            "skin": "cammo",
+            "color": "9174784",
+            "foot_color": "2228224",
+            "status": "offline"
+        },
+        {
+            "name": "Sauvill",
+            "skin": "chinese_by_whis",
+            "color": "16713728",
+            "foot_color": "2293567",
+            "status": "offline"
+        },
+        {
+            "name": "zale",
+            "skin": "greyfox",
+            "color": "16776960",
+            "foot_color": "16776960",
+            "status": "offline"
+        }
+    ]
+}
