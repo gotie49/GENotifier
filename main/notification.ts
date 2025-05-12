@@ -17,11 +17,12 @@ export default function createPlayerNotification(
       <text id="2">${mapName} on ${player.server.name}</text>
       </binding>
       </visual>
-      <actions>
-      <action content="Join" activationType="protocol" arguments="gen://join" />
-      </actions>
       </toast>`,
     });
     notification.show();
     return notification;
 }
+
+/*<actions>
+<action content="Join" activationType="protocol" arguments="gen://join" />
+</actions>*/

@@ -89,6 +89,7 @@ export default function PlayerDialog({ player }: any) {
                     <DialogCloseTrigger asChild>
                         <CloseButton size='sm' />
                     </DialogCloseTrigger>
+                    {/*
                     {player.status === 'online' && (
                         <DialogFooter>
                             <Button colorPalette='gray' variant='subtle'>
@@ -96,6 +97,7 @@ export default function PlayerDialog({ player }: any) {
                             </Button>
                         </DialogFooter>
                     )}
+                    */}
                 </DialogContent>
             </DialogPositioner>
         </Portal>

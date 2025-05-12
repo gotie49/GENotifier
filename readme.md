@@ -1,1 +1,1 @@
-TODO: join, loading, eyes
+copyright King Anatuq
