@@ -5,8 +5,18 @@ directories:
     output: dist
     buildResources: resources
 files:
-    - from: .
-      filter:
-          - package.json
-          - app
+    - from: app
+      to: app
+    - from: renderer
+      to: renderer
+    - from: data
+      to: data
+    - package.json
 publish: null
+extraMetadata:
+    main: app/background.js
+extraResources:
+    - from: resources/genIconReal.ico
+      to: genIconReal.ico
+win:
+    icon: resources/genIcon.ico

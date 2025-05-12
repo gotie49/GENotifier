@@ -1,5 +1,6 @@
 import { BrowserWindow, Notification as ElectronNotification } from 'electron';
 import { ExtendedPlayer } from '../renderer/lib/types';
+import path from 'path';
 
 export default function createPlayerNotification(
     mainWindow: BrowserWindow | null,

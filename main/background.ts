@@ -18,9 +18,8 @@ if (isProd) {
 let mainWindow;
 (async () => {
     await app.whenReady();
-    app.setAsDefaultProtocolClient('gen');
+    //app.setAsDefaultProtocolClient('gen');
     app.setAppUserModelId('GENotifier');
-
     mainWindow = createWindow('main', {
         width: 1000,
         height: 600,
@@ -28,6 +27,7 @@ let mainWindow;
             preload: path.join(__dirname, 'preload.js'),
         },
         frame: false,
+        icon: path.join(__dirname, '..', 'resources', 'genIcon.ico'),
     });
 
     if (isProd) {

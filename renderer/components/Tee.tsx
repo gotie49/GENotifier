@@ -17,7 +17,11 @@ export default function Tee({ player, enableMouseTracking = true }: any) {
             }
         };
 
-        const scriptSrc = 'http://localhost:8888/TeeAssembler.js';
+        const isProd = process.env.NODE_ENV === 'production';
+        const scriptSrc = isProd
+            ? '/TeeAssembler.js'
+            : 'http://localhost:8888/TeeAssembler.js';
+
         let script = document.querySelector(
             `script[src="${scriptSrc}"]`
         ) as HTMLScriptElement;

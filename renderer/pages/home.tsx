@@ -19,7 +19,6 @@ export default function HomePage() {
                 setPlayers(playersData as ExtendedPlayer[]);
                 setIsLoading(false);
                 setError(null);
-                console.log('Player data received:', playersData);
                 toaster.create({
                     description: 'Player Data loaded',
                     type: 'info',

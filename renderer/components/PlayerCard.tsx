@@ -28,6 +28,7 @@ const PlayerCard = React.forwardRef(({ player, ...props }: any, ref) => {
     const [enableMouseTracking, setEnableMouseTracking] = useState(false);
     return (
         <Box
+            minW='200px'
             onMouseEnter={() => setEnableMouseTracking(true)}
             onMouseLeave={() => setEnableMouseTracking(false)}
             aspectRatio='golden'
@@ -49,7 +50,12 @@ const PlayerCard = React.forwardRef(({ player, ...props }: any, ref) => {
             </Box>
             <Flex align='center' justify='space-between' height='100%'>
                 <Box flex='1'>
-                    <Text fontSize='md' fontWeight='normal'>
+                    <Text
+                        fontSize='md'
+                        fontWeight='normal'
+                        overflowWrap='break-word'
+                        lineClamp='4'
+                    >
                         {player.status === 'online'
                             ? `${player.name} is playing on ${player.server.name}`
                             : `${player.name} is currently offline`}
