@@ -1,1 +1,1 @@
-TODO: join, edit config, loading, eyes
+TODO: join, loading, eyes

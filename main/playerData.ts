@@ -1,5 +1,10 @@
 import { Config, ExtendedPlayer, LocalPlayerInfo } from '../renderer/lib/types';
 import { deepEqual } from './util';
+import path from 'path';
+import fs from 'fs';
+import { app } from 'electron';
+
+const isProd = process.env.NODE_ENV === 'production';
 
 async function fetchPlayerData(): Promise<ExtendedPlayer[]> {
     try {
@@ -10,14 +15,30 @@ async function fetchPlayerData(): Promise<ExtendedPlayer[]> {
                 throw new Error('Failed to load configuration file');
             });
 
-        const localPlayers: LocalPlayerInfo[] = await import(
-            '../data/players.json'
-        )
-            .then((module) => module.default.players)
-            .catch((error) => {
-                console.error('Error loading players file:', error);
+        let localPlayers: LocalPlayerInfo[] = [];
+        if (isProd) {
+            try {
+                const configPath = path.join(
+                    app.getPath('userData'),
+                    'players.json'
+                );
+                const raw = fs.readFileSync(configPath, 'utf-8');
+                const parsed = JSON.parse(raw);
+                localPlayers = parsed.players;
+            } catch (error) {
+                console.error('Error loading players file: ', error);
                 throw new Error('Failed to load players configuration file');
-            });
+            }
+        } else {
+            localPlayers = await import('../data/default_players.json')
+                .then((module) => module.default.players)
+                .catch((error) => {
+                    console.error('Error loading players file:', error);
+                    throw new Error(
+                        'Failed to load players configuration file'
+                    );
+                });
+        }
 
         if (!config.API_URL) {
             throw new Error('Invalid configuration: API_URL missing');

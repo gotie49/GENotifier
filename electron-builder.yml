@@ -18,5 +18,7 @@ extraMetadata:
 extraResources:
     - from: resources/genIconReal.ico
       to: genIconReal.ico
+    - from: data/default_players.json
+      to: default_players.json
 win:
     icon: resources/genIcon.ico

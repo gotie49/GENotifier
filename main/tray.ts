@@ -2,7 +2,6 @@ import { BrowserWindow, Menu, Tray, app, nativeImage } from 'electron';
 import path from 'path';
 
 export function createTray(mainWindow: BrowserWindow) {
-    console.log('Path to Resources' + process.resourcesPath);
     const iconPath = app.isPackaged
         ? path.join(process.resourcesPath, 'genIconReal.ico')
         : path.join(__dirname, '..', 'resources', 'genIconReal.ico');

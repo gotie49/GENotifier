@@ -6,6 +6,7 @@ import { diffPlayers, fetchPlayerData } from './playerData';
 import { createTray } from './tray';
 import { ExtendedPlayer } from '../renderer/lib/types';
 import createPlayerNotification from './notification';
+import fs from 'fs';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -18,6 +19,8 @@ if (isProd) {
 let mainWindow;
 (async () => {
     await app.whenReady();
+
+    if (isProd) createDefaultConfig();
     //app.setAsDefaultProtocolClient('gen');
     app.setAppUserModelId('GENotifier');
     mainWindow = createWindow('main', {
@@ -89,7 +92,9 @@ ipcMain.on('minimize-app', () => {
 });
 
 ipcMain.on('edit-config', () => {
-    const configPath = path.join(__dirname, '..', 'data', 'players.json');
+    const configPath = isProd
+        ? path.join(app.getPath('userData'), 'players.json')
+        : path.join(__dirname, '..', 'data', 'default_players.json');
 
     shell.openPath(configPath).then((errorMessage) => {
         if (errorMessage) {
@@ -97,3 +102,21 @@ ipcMain.on('edit-config', () => {
         }
     });
 });
+
+function createDefaultConfig() {
+    const userDataDir = app.getPath('userData');
+    const targetPath = path.join(userDataDir, 'players.json');
+    const defaultPath = path.join(
+        process.resourcesPath,
+        'default_players.json'
+    );
+
+    if (!fs.existsSync(targetPath)) {
+        try {
+            fs.copyFileSync(defaultPath, targetPath);
+            console.log('Created players.json in userData.');
+        } catch (err) {
+            console.error('Failed to create players.json:', err);
+        }
+    }
+}
