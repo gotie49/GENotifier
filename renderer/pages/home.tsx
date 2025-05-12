@@ -36,6 +36,10 @@ export default function HomePage() {
             }
         );
 
+        setInterval(() => {
+            window.ipc.send('fetch-players', null);
+        }, 100000);
+
         window.ipc.send('fetch-players', null);
 
         return () => {

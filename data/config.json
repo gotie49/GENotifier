@@ -1,3 +1,4 @@
 {
-    "API_URL": "https://api.status.tw/"
+    "API_URL": "https://api.status.tw/",
+    "API_INTERVAL": "30000"
 }

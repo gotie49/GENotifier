@@ -1,4 +1,5 @@
 import { Config, ExtendedPlayer, LocalPlayerInfo } from '../renderer/lib/types';
+import { deepEqual } from './util';
 
 async function fetchPlayerData(): Promise<ExtendedPlayer[]> {
     try {
@@ -98,4 +99,14 @@ async function fetchPlayerData(): Promise<ExtendedPlayer[]> {
         throw error;
     }
 }
-export { fetchPlayerData };
+
+function diffPlayers(oldData: ExtendedPlayer[], newData: ExtendedPlayer[]) {
+    return newData.filter((newPlayer) => {
+        const oldPlayer = oldData.find((p) => p.name === newPlayer.name);
+        if (!oldPlayer) return true;
+
+        return !deepEqual(oldPlayer, newPlayer);
+    });
+}
+
+export { fetchPlayerData, diffPlayers };
