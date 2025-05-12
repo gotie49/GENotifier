@@ -37,8 +37,8 @@ export default function Tee({ player, enableMouseTracking = true }: any) {
     }, []);
 
     useEffect(() => {
-        if (isTeeAssemblerLoaded && teeRef.current) {
-            const newTee = new window.TeeAssembler.Tee({
+        if (isTeeAssemblerLoaded && teeRef.current && !teeInstanceRef.current) {
+            teeInstanceRef.current = new window.TeeAssembler.Tee({
                 container: teeRef.current,
                 imageLink: `https://ddnet.org/skins/skin/${player.skin}.png`,
                 ...(player.color && {
@@ -47,20 +47,33 @@ export default function Tee({ player, enableMouseTracking = true }: any) {
                     colorFormat: 'code',
                 }),
             });
+
             if (enableMouseTracking) {
-                newTee.api.functions.lookAtCursor();
+                teeInstanceRef.current.api.functions.lookAtCursor();
             }
-
-            teeInstanceRef.current = newTee;
-
-            return () => {
-                if (teeInstanceRef.current) {
-                    teeInstanceRef.current.api.functions.unbindContainer();
-                    teeInstanceRef.current = null;
-                }
-            };
         }
-    }, [player, isTeeAssemblerLoaded, enableMouseTracking]);
+
+        return () => {
+            if (teeInstanceRef.current) {
+                if (enableMouseTracking) {
+                    teeInstanceRef.current.api.functions.dontLookAtCursor();
+                }
+                teeInstanceRef.current.api.functions.unbindContainer();
+                teeInstanceRef.current = null;
+            }
+        };
+    }, [isTeeAssemblerLoaded]);
+
+    useEffect(() => {
+        const api = teeInstanceRef.current?.api?.functions;
+        if (!api) return;
+
+        if (enableMouseTracking) {
+            api.lookAtCursor();
+        } else {
+            api.dontLookAtCursor();
+        }
+    }, [enableMouseTracking]);
 
     return <div className='teeassembler-tee' ref={teeRef} />;
 }
