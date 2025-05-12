@@ -28,8 +28,12 @@ export default function Toolbar({ onRefresh }) {
                                 <Menu.Item value='refresh' onClick={onRefresh}>
                                     Refresh
                                 </Menu.Item>
-                                {/* TODO */}
-                                <Menu.Item value='edit-player-config'>
+                                <Menu.Item
+                                    value='edit-player-config'
+                                    onClick={() =>
+                                        window.ipc.send('edit-config', null)
+                                    }
+                                >
                                     Edit Player Configuration
                                 </Menu.Item>
                                 <Menu.Item

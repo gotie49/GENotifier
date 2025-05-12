@@ -1,5 +1,5 @@
 import path from 'path';
-import { app, ipcMain } from 'electron';
+import { app, ipcMain, shell } from 'electron';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
 import { diffPlayers, fetchPlayerData } from './playerData';
@@ -86,4 +86,14 @@ ipcMain.on('minimize-app', () => {
     if (mainWindow) {
         mainWindow.hide();
     }
+});
+
+ipcMain.on('edit-config', () => {
+    const configPath = path.join(__dirname, '..', 'data', 'players.json');
+
+    shell.openPath(configPath).then((errorMessage) => {
+        if (errorMessage) {
+            console.error('Failed to open file:', errorMessage);
+        }
+    });
 });
