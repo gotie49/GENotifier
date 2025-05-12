@@ -42,6 +42,5 @@ export interface LocalPlayerInfo {
     skin: string;
     color?: string;
     foot_color?: string;
-    status: string;
 }
 export { Player, Config };

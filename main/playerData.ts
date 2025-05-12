@@ -108,7 +108,7 @@ async function fetchPlayerData(): Promise<ExtendedPlayer[]> {
                         skin: localPlayer.skin,
                         color: localPlayer.color,
                         foot_color: localPlayer.foot_color,
-                        status: localPlayer.status,
+                        status: 'offline',
                     };
                 }
             })
