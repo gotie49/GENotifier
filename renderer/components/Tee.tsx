@@ -54,6 +54,7 @@ export default function Tee({ player, enableMouseTracking = true }: any) {
 
             if (enableMouseTracking) {
                 teeInstanceRef.current.api.functions.lookAtCursor();
+                teeInstanceRef.current.api.functions.setEyeType('happy');
             }
         }
 
@@ -61,6 +62,7 @@ export default function Tee({ player, enableMouseTracking = true }: any) {
             if (teeInstanceRef.current) {
                 if (enableMouseTracking) {
                     teeInstanceRef.current.api.functions.dontLookAtCursor();
+                    teeInstanceRef.current.api.functions.setEyeType('default');
                 }
                 teeInstanceRef.current.api.functions.unbindContainer();
                 teeInstanceRef.current = null;
@@ -74,8 +76,10 @@ export default function Tee({ player, enableMouseTracking = true }: any) {
 
         if (enableMouseTracking) {
             api.lookAtCursor();
+            api.setEyeType('happy');
         } else {
             api.dontLookAtCursor();
+            api.setEyeType('default');
         }
     }, [enableMouseTracking]);
 

@@ -455,6 +455,24 @@ const TeeAssembler = {
 				const quantizedAngle = Math.round(degrees / multiple) * multiple
 
 				return Math.abs(degrees - quantizedAngle)
+			},
+			//scuffed eyeType function from gotie
+			setEyeType: (eyeType = 'default') => {
+   				const eyeKey = `${eyeType}_eye`;
+    			const eyeData =
+        			TeeAssembler.skin.elements[eyeKey] ||
+        			TeeAssembler.skin.elements.default_eye;
+
+    			const xPos = -eyeData[0] + 'em';
+    			const yPos = -eyeData[1] + 'em';
+
+    			const leftEye = this.container.querySelector('.teeassembler-left_eye');
+    			const rightEye = this.container.querySelector('.teeassembler-right_eye');
+
+    			if (leftEye && rightEye) {
+        			leftEye.style.backgroundPosition = `${xPos} ${yPos}`;
+        			rightEye.style.backgroundPosition = `${xPos} ${yPos}`;
+    			}
 			}
 		}
 	}

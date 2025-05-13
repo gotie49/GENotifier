@@ -13,7 +13,7 @@ export function getStatusColor(status: string) {
             return 'gray';
     }
 }
-export function getBgColor(status: string) {
+function getBgColor(status: string) {
     switch (status) {
         case 'online':
             return 'gray.900';
