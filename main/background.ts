@@ -4,7 +4,7 @@ import serve from 'electron-serve';
 import { createWindow } from './helpers';
 import { diffPlayers, fetchPlayerData } from './playerData';
 import { createTray } from './tray';
-import { ExtendedPlayer } from '../renderer/lib/types';
+import { Config, ExtendedPlayer } from '../renderer/lib/types';
 import createPlayerNotification from './notification';
 import fs from 'fs';
 
@@ -21,7 +21,6 @@ let mainWindow;
     await app.whenReady();
 
     if (isProd) createDefaultConfig();
-    //app.setAsDefaultProtocolClient('gen');
     app.setAppUserModelId('GENotifier');
     mainWindow = createWindow('main', {
         width: 1000,
@@ -42,6 +41,11 @@ let mainWindow;
     }
 
     createTray(mainWindow);
+
+    mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+        shell.openExternal(url);
+        return { action: 'deny' };
+    });
 })();
 
 app.on('open-url', (_event, url) => {

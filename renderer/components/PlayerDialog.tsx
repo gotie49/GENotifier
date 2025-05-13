@@ -89,15 +89,21 @@ export default function PlayerDialog({ player }: any) {
                     <DialogCloseTrigger asChild>
                         <CloseButton size='sm' />
                     </DialogCloseTrigger>
-                    {/*
                     {player.status === 'online' && (
                         <DialogFooter>
-                            <Button colorPalette='gray' variant='subtle'>
+                            <Button
+                                colorPalette='gray'
+                                variant='subtle'
+                                onClick={() => {
+                                    window.open(
+                                        `ddnet://${player.server.ip}:${player.server.port}`
+                                    );
+                                }}
+                            >
                                 Join
                             </Button>
                         </DialogFooter>
                     )}
-                    */}
                 </DialogContent>
             </DialogPositioner>
         </Portal>

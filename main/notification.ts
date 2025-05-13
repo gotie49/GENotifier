@@ -11,18 +11,17 @@ export default function createPlayerNotification(
 
     const notification = new ElectronNotification({
         toastXml: `<toast>
-      <visual>
-      <binding template="ToastText02">
-      <text id="1">${player.name} is playing!</text>
-      <text id="2">${mapName} on ${player.server.name}</text>
-      </binding>
-      </visual>
-      </toast>`,
+        <visual>
+        <binding template="ToastText02">
+        <text id="1">${player.name} is playing!</text>
+        <text id="2">${mapName} on ${player.server.name}</text>
+        </binding>
+        </visual>
+        <actions>
+        <action content="Join" activationType="protocol" arguments="ddnet://${player.server.ip}:${player.server.port}" />
+        </actions>
+        </toast>`,
     });
     notification.show();
     return notification;
 }
-
-/*<actions>
-<action content="Join" activationType="protocol" arguments="gen://join" />
-</actions>*/
