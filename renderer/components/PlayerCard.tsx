@@ -17,6 +17,17 @@ export function getStatusColor(status: string) {
 function getBgColor(status: string) {
     switch (status) {
         case 'online':
+            return 'gray.200';
+        case 'offline':
+            return 'gray.300';
+        default:
+            return 'gray.300';
+    }
+}
+
+function getBgDarkColor(status: string) {
+    switch (status) {
+        case 'online':
             return 'gray.900';
         case 'offline':
             return 'gray.950';
@@ -36,12 +47,13 @@ const PlayerCard = React.forwardRef(({ player, ...props }: any, ref) => {
             aspectRatio='golden'
             ref={ref}
             bg={getBgColor(player.status)}
+            _dark={{ bg: getBgDarkColor(player.status) }}
             p={10}
             shadow='xl'
             borderWidth='1px'
             borderRadius='md'
             cursor='pointer'
-            _hover={{ bg: 'gray.800' }}
+            _hover={{ bg: 'gray.100', _dark: { bg: 'gray.800' } }}
             position='relative'
             {...props}
         >
