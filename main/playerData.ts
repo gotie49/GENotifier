@@ -1,5 +1,4 @@
 import { Config, ExtendedPlayer, LocalPlayerInfo } from '../renderer/lib/types';
-import { deepEqual } from './util';
 import path from 'path';
 import fs from 'fs';
 import { app } from 'electron';
@@ -125,8 +124,11 @@ function diffPlayers(oldData: ExtendedPlayer[], newData: ExtendedPlayer[]) {
     return newData.filter((newPlayer) => {
         const oldPlayer = oldData.find((p) => p.name === newPlayer.name);
         if (!oldPlayer) return true;
-
-        return !deepEqual(oldPlayer, newPlayer);
+        if (
+            oldPlayer.server.ip !== newPlayer.server.ip &&
+            oldPlayer.server.port !== newPlayer.server.port
+        )
+            return true;
     });
 }
 
