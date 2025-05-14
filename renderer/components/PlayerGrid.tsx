@@ -9,7 +9,13 @@ const PlayerGrid = React.forwardRef(({ players, ...props }: any, ref) => {
         return a.status === 'online' ? -1 : 1;
     });
     return (
-        <SimpleGrid ref={ref} columns={[1, 2, 3]} gap={6} p={6} {...props}>
+        <SimpleGrid
+            ref={ref}
+            columns={[1, 2, 3, 4, 5]}
+            gap={6}
+            p={6}
+            {...props}
+        >
             {sortedPlayers.map((player) => (
                 <Dialog.Root key={player.name}>
                     <Dialog.Trigger asChild>

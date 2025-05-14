@@ -13,6 +13,7 @@ export function getStatusColor(status: string) {
             return 'gray';
     }
 }
+
 function getBgColor(status: string) {
     switch (status) {
         case 'online':
@@ -28,6 +29,7 @@ const PlayerCard = React.forwardRef(({ player, ...props }: any, ref) => {
     const [enableMouseTracking, setEnableMouseTracking] = useState(false);
     return (
         <Box
+            maxW='300px'
             minW='200px'
             onMouseEnter={() => setEnableMouseTracking(true)}
             onMouseLeave={() => setEnableMouseTracking(false)}

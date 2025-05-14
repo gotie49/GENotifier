@@ -15,6 +15,13 @@ export default function Toolbar({ onRefresh }) {
                 GENotifier
             </Heading>
             <Flex justify='space-between' gap={5}>
+                <Button
+                    colorPalette='gray'
+                    variant='subtle'
+                    onClick={onRefresh}
+                >
+                    Refresh
+                </Button>
                 <Toaster />
                 <Menu.Root>
                     <Menu.Trigger asChild>
@@ -25,9 +32,6 @@ export default function Toolbar({ onRefresh }) {
                     <Portal>
                         <Menu.Positioner>
                             <Menu.Content>
-                                <Menu.Item value='refresh' onClick={onRefresh}>
-                                    Refresh
-                                </Menu.Item>
                                 <Menu.Item
                                     value='edit-player-config'
                                     onClick={() =>

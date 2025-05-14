@@ -24,7 +24,7 @@ let mainWindow;
     app.setAppUserModelId('GENotifier');
     mainWindow = createWindow('main', {
         width: 1000,
-        height: 600,
+        height: 750,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
         },
