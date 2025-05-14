@@ -82,6 +82,14 @@ export default function PlayerDialog({ player }: any) {
                                             {player.server.port}
                                         </DataList.ItemValue>
                                     </DataList.Item>
+                                    <DataList.Item>
+                                        <DataList.ItemLabel>
+                                            Map
+                                        </DataList.ItemLabel>
+                                        <DataList.ItemValue>
+                                            {player.server.map.name}
+                                        </DataList.ItemValue>
+                                    </DataList.Item>
                                 </>
                             )}
                         </DataList.Root>
