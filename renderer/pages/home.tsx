@@ -11,6 +11,7 @@ export default function HomePage() {
     const [players, setPlayers] = useState<ExtendedPlayer[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    let isVisible: boolean = false;
 
     useEffect(() => {
         const unsubscribePlayerData = window.ipc.on(
@@ -19,10 +20,14 @@ export default function HomePage() {
                 setPlayers(playersData as ExtendedPlayer[]);
                 setIsLoading(false);
                 setError(null);
-                toaster.create({
-                    description: 'Player Data loaded',
-                    type: 'info',
-                });
+
+                window.ipc.send('fetch-visibility', null);
+                if (isVisible) {
+                    toaster.create({
+                        description: 'Player Data loaded',
+                        type: 'info',
+                    });
+                }
             }
         );
 
@@ -35,6 +40,13 @@ export default function HomePage() {
             }
         );
 
+        const unsubscribeWindowVisibility = window.ipc.on(
+            'window-visibility',
+            (windowVisible: boolean) => {
+                isVisible = windowVisible;
+            }
+        );
+
         setInterval(() => {
             window.ipc.send('fetch-players', null);
         }, 60000);
@@ -44,6 +56,7 @@ export default function HomePage() {
         return () => {
             unsubscribePlayerData();
             unsubscribePlayerError();
+            unsubscribeWindowVisibility();
         };
     }, []);
 
