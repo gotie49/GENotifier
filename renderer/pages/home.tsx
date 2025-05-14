@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Center, Flex, Spinner } from '@chakra-ui/react';
 import { ExtendedPlayer } from '../lib/types';
 import Toolbar from '../components/Toolbar';
 import PlayerGrid from '../components/PlayerGrid';
@@ -37,7 +37,7 @@ export default function HomePage() {
 
         setInterval(() => {
             window.ipc.send('fetch-players', null);
-        }, 100000);
+        }, 60000);
 
         window.ipc.send('fetch-players', null);
 
@@ -52,6 +52,13 @@ export default function HomePage() {
             <Toolbar onRefresh={refreshPlayers} />
             <Box as='main' flex='1' p={6}>
                 <PlayerGrid players={players} />
+                {isLoading && (
+                    <Box pos='absolute' inset='0' bg='bg/80'>
+                        <Center h='full'>
+                            <Spinner color='white' />
+                        </Center>
+                    </Box>
+                )}
             </Box>
         </Flex>
     );
