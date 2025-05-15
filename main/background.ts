@@ -54,6 +54,14 @@ let mainWindow;
     mainWindow.on('hide', () => {
         windowVisible = false;
     });
+
+    mainWindow.on('minimize', () => {
+        windowVisible = false;
+    });
+
+    mainWindow.on('restore', () => {
+        windowVisible = true;
+    });
 })();
 
 app.on('open-url', (_event, url) => {

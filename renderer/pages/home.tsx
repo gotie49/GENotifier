@@ -28,6 +28,7 @@ export default function HomePage() {
                         type: 'info',
                     });
                 }
+                console.log(isVisible);
             }
         );
 
