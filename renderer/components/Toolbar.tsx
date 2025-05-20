@@ -1,5 +1,5 @@
 import { Button, Flex, Heading, Menu, Portal } from '@chakra-ui/react';
-import { Toaster } from './ui/toaster';
+import { toaster, Toaster } from './ui/toaster';
 
 export default function Toolbar({ onRefresh }) {
     return (
@@ -18,7 +18,13 @@ export default function Toolbar({ onRefresh }) {
                 <Button
                     colorPalette='gray'
                     variant='subtle'
-                    onClick={onRefresh}
+                    onClick={() => {
+                        onRefresh;
+                        toaster.create({
+                            description: 'Player data loaded',
+                            type: 'info',
+                        });
+                    }}
                 >
                     Refresh
                 </Button>

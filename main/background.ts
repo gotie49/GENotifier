@@ -46,22 +46,6 @@ let mainWindow;
         shell.openExternal(url);
         return { action: 'deny' };
     });
-
-    mainWindow.on('show', () => {
-        windowVisible = true;
-    });
-
-    mainWindow.on('hide', () => {
-        windowVisible = false;
-    });
-
-    mainWindow.on('minimize', () => {
-        windowVisible = false;
-    });
-
-    mainWindow.on('restore', () => {
-        windowVisible = true;
-    });
 })();
 
 app.on('open-url', (_event, url) => {
@@ -109,11 +93,6 @@ ipcMain.on('minimize-app', () => {
     if (mainWindow) {
         mainWindow.hide();
     }
-});
-
-let windowVisible = true;
-ipcMain.on('fetch-visibility', (event) => {
-    event.reply('window-visibility', windowVisible);
 });
 
 ipcMain.on('edit-config', () => {
